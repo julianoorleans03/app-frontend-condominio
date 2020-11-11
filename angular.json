@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "app-frontend-condominio"
+    }
+  },
+  "defaultProject": "app-frontend-condominio",
+  "cli": {
+    "analytics": "af9a3406-ffd1-4fd2-b379-348a97f814b4"
+  }
 }
