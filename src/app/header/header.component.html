@@ -1,0 +1,31 @@
+<nav class="main-header navbar navbar-expand-lg navbar-dark bg-danger py-1">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-geral"
+    aria-controls="navbar-geral" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbar-geral" *ngIf="authService.estaLogado()">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a title="Home" class="nav-link" [routerLink]="['/']">
+          Início</a>
+      </li>
+      <li class="nav-item">
+        <a title="Usuario" class="nav-link" [routerLink]="['/']">
+          Usuário</a>
+      </li>
+      <li class="nav-item">
+        <a title="Achados e Perdidos" class="nav-link" [routerLink]="['/']">
+          Achados e Perdidos</a>
+      </li>
+      <li class="nav-item">
+        <a title="Reserva" class="nav-link" [routerLink]="['/']">
+          Reserva</a>
+      </li>
+      <li class="nav-item">
+        <a title="Sair" class="nav-link" (click)="sair()">
+          Sair</a>
+      </li>
+    </ul>
+  </div>
+</nav>
