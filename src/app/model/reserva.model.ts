@@ -3,9 +3,10 @@ export class Reserva {
   salao: string;
   usuario: string;
   dataReserva: string;
-  dataInicio: Date;
-  dataFim: Date;
+  dataInicio: string;
+  dataFim: string;
   status: string;
+  titulo: string;
 
   constructor() {
 

@@ -27,13 +27,17 @@ export class ReservaService {
 
   cancelar(item: any): Observable<any> {
     return this.http.put<any>(
-      `${environment.api}/achadoperdido/cancelar/${item._id}`,
+      `${environment.api}/reserva/cancelar/${item._id}`,
       {status: "cancelada"}
     );
   }
 
   salvar(item: any): Observable<any> {
     return this.http.post<any>(`${environment.api}/reserva`, item);
+  }
+
+  editar(item: any): Observable<any> {
+    return this.http.put<any>(`${environment.api}/reserva/editar/${item._id}`, item);
   }
 
   mostrarMensagemSucesso(): void {

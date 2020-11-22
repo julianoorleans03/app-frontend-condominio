@@ -40,6 +40,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { ModalReservaComponent } from './reserva/modal-reserva/modal-reserva.component';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -71,7 +72,8 @@ const firebaseConfig = {
     AchadosperdidosComponent,
     AchadosperdidosCadastroComponent,
     ReservaComponent,
-    UsuarioPendenteComponent
+    UsuarioPendenteComponent,
+    ModalReservaComponent
   ],
   imports: [
     BrowserModule,

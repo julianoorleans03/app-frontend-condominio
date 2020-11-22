@@ -1,18 +1,24 @@
 <div class="container pt-5">
-    <div class="row">
-        <div class="col-12">
-            <div class="card card-height card-outline card-danger card-tabs shadow">
-                <div class="card-header">
-                    <h5>Reserva do Salão</h5>
-                </div>
-                <div class="card-body">
-                    <div class='demo-app'>
-                        <div class='demo-app-main'>
-                            <full-calendar *ngIf='calendarVisible' [options]='calendarOptions'></full-calendar>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card card-height card-outline card-danger card-tabs shadow">
+        <div class="card-header">
+          <h5>Reserva do Salão</h5>
         </div>
+        <div class="card-body">
+          <div class='demo-app'>
+            <div class='demo-app-main'>
+              <full-calendar *ngIf='calendarVisible' [options]='calendarOptions'></full-calendar>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+  <div class="row">
+    <app-modal-reserva
+      *ngIf="!resetarComponenteModalConsulta"
+      (enviarEntidadeCargoEmitter)="recebeReserva($event)"
+    ></app-modal-reserva>
+  </div>
 </div>

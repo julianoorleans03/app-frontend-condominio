@@ -1,0 +1,57 @@
+<div class="modal fade" id="modal-reserva" tabindex="-1" data-keyboard="false" role="dialog"
+  aria-labelledby="modalReserva" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <h5 class="modal-title">
+          Reservar Salão
+        </h5>
+        <button type="button" class="close text-white" (click)="fecharModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form name="reservaForm" novalidate #form="ngForm">
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <label for="titulo" class="required" [class.text-danger]="
+                    !iptTitulo.valid &&
+                    (iptTitulo.dirty || iptTitulo.touched || salvando)
+                  ">Título</label>
+                <input type="text" class="form-control form-control-sm" name="titulo" id="titulo"
+                  [(ngModel)]="reserva.titulo" [class.is-invalid]="
+                    !iptTitulo.valid &&
+                    (iptTitulo.dirty || iptTitulo.touched || salvando)
+                  " #iptTitulo="ngModel" required />
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="row d-flex justify-content-end">
+          <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+            <div class="form-group">
+              <button type="button" class="btn btn-sm btn-block btn-danger" (click)="cancelar()" *ngIf="reservaPendente()">
+                <i class="fa fa-trash" aria-hidden="true"></i> Cancelar
+              </button>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+            <div class="form-group">
+              <button type="button" class="btn btn-sm btn-block btn-success" (click)="salvar()" [disabled]="!authService.ehUsuarioAdministrador()">
+                <i class="fa fa-check" aria-hidden="true"></i> Confirmar
+              </button>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+            <div class="form-group">
+              <button type="button" class="btn btn-sm btn-block btn-primary" (click)="salvar()">
+                <i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
