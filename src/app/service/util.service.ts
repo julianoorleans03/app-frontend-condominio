@@ -294,7 +294,7 @@ export class UtilService {
     jQuery(id).focus();
   }
   
-  podeLimparTela(id: number): boolean {
+  podeLimparTela(id: string): boolean {
     if (id) {
       this.mostrarMensagemAlerta(
         "É possivel limpar somente registros não salvos!"

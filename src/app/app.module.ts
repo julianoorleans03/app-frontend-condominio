@@ -1,5 +1,7 @@
+import localePt from "@angular/common/locales/pt";
+
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID, ErrorHandler } from '@angular/core';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
@@ -19,8 +21,25 @@ import { FooterComponent } from './footer/footer.component';
 
 import { JwtInterceptor } from "./auth/jwt-interceptor";
 import { ToastrModule } from "ngx-toastr";
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { UsuarioComponent } from './usuario/usuario.component';
+import { AchadosperdidosComponent } from './achadosperdidos/achadosperdidos.component';
+import { AchadosperdidosCadastroComponent } from './achadosperdidos/achadosperdidos-cadastro/achadosperdidos-cadastro.component';
+import { ReservaComponent } from './reserva/reserva.component';
+
+import {
+  LocationStrategy,
+  registerLocaleData,
+  HashLocationStrategy,
+} from "@angular/common";
+import { AppErrorHandler } from './auth/app-error-handler';
+import { UsuarioPendenteComponent } from './usuario-pendente/usuario-pendente.component';
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -29,6 +48,18 @@ FullCalendarModule.registerPlugins([
   interactionPlugin
 ])
 
+registerLocaleData(localePt, "pt");
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDuPWnsBUL0BA4DyCDram4KPDgDjJgpA2Q",
+  authDomain: "condominio-294219.firebaseapp.com",
+  databaseURL: "https://condominio-294219.firebaseio.com",
+  projectId: "condominio-294219",
+  storageBucket: "condominio-294219.appspot.com",
+  messagingSenderId: "781068296382",
+  appId: "1:781068296382:web:9364c42ac1888178157eef"
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +67,12 @@ FullCalendarModule.registerPlugins([
     HomeComponent,
     HeaderComponent,
     MainComponent,
-    FooterComponent
+    FooterComponent,
+    UsuarioComponent,
+    AchadosperdidosComponent,
+    AchadosperdidosCadastroComponent,
+    ReservaComponent,
+    UsuarioPendenteComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +81,10 @@ FullCalendarModule.registerPlugins([
     FullCalendarModule,
     HttpClientModule,
     FormsModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule, // firestore
+    AngularFireAuthModule, // auth
+    AngularFireStorageModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: "toast-top-right",
@@ -52,7 +92,19 @@ FullCalendarModule.registerPlugins([
       closeButton: true,
     }),
   ],
-  providers: [,
+  providers: [
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy,
+    },
+    {
+      provide: LOCALE_ID,
+      useValue: "pt",
+    },
+    {
+      provide: ErrorHandler,
+      useClass: AppErrorHandler,
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,

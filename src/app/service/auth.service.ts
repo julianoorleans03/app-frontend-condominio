@@ -6,13 +6,28 @@ import { LocalStorageService } from './local-storage.service';
 import { UsuarioLogin } from '../model/usuario-login.model';
 import { UtilService } from './util.service';
 import { environment } from "src/environments/environment";
+import { AngularFireAuth } from '@angular/fire/auth';
+import * as firebase from 'firebase/app';
+import { Usuario } from '../model/usuario.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  constructor(private http: HttpClient, private router: Router,
+    private localStorageService: LocalStorageService, private utilService: UtilService, public afAuth: AngularFireAuth) { }
 
-  constructor(private http: HttpClient, private router: Router, private localStorageService: LocalStorageService, private utilService: UtilService,) { }
+  doFacebookLogin() {
+    let provider = new firebase.default.auth.FacebookAuthProvider();
+    
+    this.afAuth.signInWithPopup(provider).then(res => {
+      console.log(res);
+      let usuario: Usuario = new Usuario();
+      this.acessar(usuario);
+    }).catch(error => {
+      console.log(error);
+    })
+  }
 
   acessar(usuario: UsuarioLogin): void {
     this.http.post<any>(`${environment.api}/usuario/autenticar`, usuario).subscribe(
@@ -31,6 +46,26 @@ export class AuthService {
         }
       }
     );
+  }
+
+  criarConta(usuario: UsuarioLogin): void {
+
+    if (usuario.email && usuario.senha) {
+      this.http.post<any>(`${environment.api}/usuario`, usuario).subscribe(
+        (response) => {
+          this.utilService.mostrarMensagemSucesso("Usuário criado com sucesso. Aguarde a liberação do ADM!");
+        },
+        (error) => {
+          if (error && error.status == 401) {
+            this.utilService.mostrarMensagemAlerta(
+              error.error.message
+            );
+          } else if (error.status == 0) {
+            this.utilService.mostrarMensagemErro("Servidor Indisponível!");
+          }
+        }
+      );
+    }
   }
 
   recuperarToken(): string {

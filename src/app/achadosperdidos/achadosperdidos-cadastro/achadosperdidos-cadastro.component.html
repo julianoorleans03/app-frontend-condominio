@@ -1,0 +1,54 @@
+<div class="container pt-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="card card-height card-outline card-danger card-tabs shadow">
+        <div class="card-header">
+          <h5>{{title}}</h5>
+        </div>
+        <div class="card-body">
+          <form name="achadoperdidoForm" novalidate #form="ngForm">
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="nome" class="required" [class.text-danger]="
+                          !iptNome.valid && (iptNome.dirty || iptNome.touched || salvando)
+                        ">Nome</label>
+                  <input type="text" name="nome" id="nome" class="form-control form-control-sm" [class.is-invalid]="
+                          !iptNome.valid && (iptNome.dirty || iptNome.touched || salvando)
+                        " [(ngModel)]="achadoperdido.objeto" #iptNome="ngModel" required />
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="obs" class="required" [class.text-danger]="
+                          !iptObs.valid && (iptObs.dirty || iptObs.touched || salvando)
+                        ">OBS</label>
+                  <input type="text" name="obs" id="obs" class="form-control form-control-sm" [class.is-invalid]="
+                          !iptObs.valid && (iptObs.dirty || iptObs.touched || salvando)
+                        " [(ngModel)]="achadoperdido.obs" #iptObs="ngModel" required />
+                </div>
+              </div>
+            </div>
+            <div class="row d-flex justify-content-end">
+              <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
+                <div class="form-group">
+                  <button type="button" class="btn btn-sm btn-block btn-success" (click)="salvar()">
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar
+                  </button>
+                </div>
+              </div>
+
+              <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
+                <div class="form-group">
+                  <button type="button" class="btn btn-sm btn-block btn-danger" (click)="limpar()">
+                    <i class="fa fa-eraser" aria-hidden="true"></i> Limpar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

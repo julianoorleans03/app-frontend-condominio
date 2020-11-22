@@ -1,25 +1,29 @@
-<nav class="main-header navbar navbar-expand-lg navbar-dark bg-danger py-1">
+<nav class="main-header navbar navbar-expand-lg navbar-dark bg-danger py-1" *ngIf="authService.estaLogado()">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-geral"
     aria-controls="navbar-geral" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbar-geral" *ngIf="authService.estaLogado()">
-    <ul class="navbar-nav mr-auto">
+  <div class="collapse navbar-collapse" id="navbar-geral">
+    <ul class="navbar-nav mr-auto cursor-pointer">
       <li class="nav-item">
         <a title="Home" class="nav-link" [routerLink]="['/']">
           Início</a>
       </li>
       <li class="nav-item">
-        <a title="Usuario" class="nav-link" [routerLink]="['/']">
+        <a title="Usuario" class="nav-link" [routerLink]="['usuario/']">
           Usuário</a>
       </li>
+      <li class="nav-item" *ngIf="authService.ehUsuarioAdministrador()">
+        <a title="Usuarios Pendetes" class="nav-link" [routerLink]="['usuario-pendente/']">
+          Usuários Pendetes</a>
+      </li>
       <li class="nav-item">
-        <a title="Achados e Perdidos" class="nav-link" [routerLink]="['/']">
+        <a title="Achados e Perdidos" class="nav-link" [routerLink]="['achadosperdidos/']">
           Achados e Perdidos</a>
       </li>
       <li class="nav-item">
-        <a title="Reserva" class="nav-link" [routerLink]="['/']">
+        <a title="Reserva" class="nav-link" [routerLink]="['reserva/']">
           Reserva</a>
       </li>
       <li class="nav-item">

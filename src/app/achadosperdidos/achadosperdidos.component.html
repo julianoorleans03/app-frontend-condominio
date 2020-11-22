@@ -1,0 +1,50 @@
+<div class="container pt-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="card card-height card-outline card-danger card-tabs shadow">
+        <div class="card-header">
+          <h5>Achados e Perdidos</h5>
+          <div class="form-group pt-2">
+            <button type="button" class="btn btn-sm btn-primary btn-block" (click)="cadastrar()">
+              Cadastrar
+              <i class="fa fa-plus" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover table-sm">
+              <thead>
+                <tr>
+                  <th class="text-center">Entregar</th>
+                  <th class="text-center">
+                    Objeto
+                  </th>
+                  <th class="text-center">
+                    OBS
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of itens" class="cursor-pointer">
+                  <td class="text-center">
+                    <button type="button" class="btn btn-link p-0 mr-2" title="Entregar" (click)="entregar(item)" [disabled]="!authService.ehUsuarioAdministrador()">
+                      <i class="fa fa-check" aria-hidden="true"></i>
+                    </button>
+                  </td>
+                  <td class="text-center">
+                    {{item.objeto}}
+                  </td>
+                  <td class="text-center">
+                    {{item.obs}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

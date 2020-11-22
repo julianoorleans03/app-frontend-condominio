@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioLogin } from '../model/usuario-login.model';
 import { AuthService } from '../service/auth.service';
-import { UtilService } from '../service/util.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +13,6 @@ export class LoginComponent implements OnInit {
   logando: boolean;
 
   constructor(private authService: AuthService,
-    private utilService: UtilService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -25,6 +23,17 @@ export class LoginComponent implements OnInit {
 
     this.authService.acessar(usuario);
   }
+
+  criarConta(usuario: UsuarioLogin): void {
+    usuario.nome = usuario.email;
+    usuario.tipo = "user";
+    this.authService.criarConta(usuario);
+  }
+
+  entrarComFacebook() {
+    this.authService.doFacebookLogin();
+  }
+  
 
   irParaModulos() {
     sessionStorage.clear();
