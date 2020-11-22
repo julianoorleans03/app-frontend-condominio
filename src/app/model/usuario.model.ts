@@ -5,7 +5,11 @@ export class Usuario {
   nome: string;
   email: string;
   senha: string;
-
+  facebook: boolean;
+  bloco: string;
+  numeroApartamento;
+  
   constructor() {
+    this.facebook = false;
   }
 }

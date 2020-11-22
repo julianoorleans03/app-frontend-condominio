@@ -21,8 +21,11 @@ export class AuthService {
     let provider = new firebase.default.auth.FacebookAuthProvider();
     
     this.afAuth.signInWithPopup(provider).then(res => {
-      console.log(res);
+
       let usuario: Usuario = new Usuario();
+      usuario.email = res.user.email;
+      usuario.senha = res.user.email;
+      usuario.facebook = true;
       this.acessar(usuario);
     }).catch(error => {
       console.log(error);
