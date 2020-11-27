@@ -8,19 +8,15 @@ import { AuthService } from '../service/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   usuario: UsuarioLogin = new UsuarioLogin();
   logando: boolean;
 
   constructor(private authService: AuthService,
     private router: Router) { }
 
-  ngOnInit(): void {
-  }
-
   entrar(usuario: UsuarioLogin): void {
     this.logando = true;
-
     this.authService.acessar(usuario);
   }
 
@@ -33,12 +29,9 @@ export class LoginComponent implements OnInit {
   entrarComFacebook() {
     this.authService.doFacebookLogin();
   }
-  
 
   irParaModulos() {
     sessionStorage.clear();
-
     this.router.navigate(["/"]);
   }
-
 }

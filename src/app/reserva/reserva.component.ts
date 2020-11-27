@@ -99,9 +99,9 @@ export class ReservaComponent implements OnInit {
   abrirModal(evento: any = null): void {
 
     if (evento) {
-      this.modalReservaReference.reserva = this.reservas.find(reserva => { return reserva.dataFim == moment(evento.startStr).format("YYYY-MM-DD") && reserva.dataFim == moment(evento.startStr).format("YYYY-MM-DD") && reserva.status != 'cancelada'}) || new Reserva();
+      this.modalReservaReference.reserva = this.reservas.find(reserva => { return reserva.dataFim == moment(evento.startStr).format("YYYY-MM-DD") && reserva.dataFim == moment(evento.startStr).format("YYYY-MM-DD") && reserva.status != 'cancelada' }) || new Reserva();
     } else {
-      this.modalReservaReference.reserva = this.reservas.find(reserva => { return reserva.dataFim == moment(this.selectInfo.startStr).format("YYYY-MM-DD") && reserva.dataFim == moment(this.selectInfo.startStr).format("YYYY-MM-DD") && reserva.status != 'cancelada'}) || new Reserva();
+      this.modalReservaReference.reserva = this.reservas.find(reserva => { return reserva.dataFim == moment(this.selectInfo.startStr).format("YYYY-MM-DD") && reserva.dataFim == moment(this.selectInfo.startStr).format("YYYY-MM-DD") && reserva.status != 'cancelada' }) || new Reserva();
     }
 
     jQuery("#modal-reserva").modal().show();
