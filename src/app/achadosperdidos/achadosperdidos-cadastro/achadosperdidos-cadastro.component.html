@@ -13,7 +13,7 @@
                   <label for="nome" class="required" [class.text-danger]="
                           !iptNome.valid && (iptNome.dirty || iptNome.touched || salvando)
                         ">Nome</label>
-                  <input type="text" name="nome" id="nome" class="form-control form-control-sm" [class.is-invalid]="
+                  <input type="text" name="nome" id="nome" class="form-control " [class.is-invalid]="
                           !iptNome.valid && (iptNome.dirty || iptNome.touched || salvando)
                         " [(ngModel)]="achadoperdido.objeto" #iptNome="ngModel" required />
                 </div>
@@ -23,7 +23,7 @@
                   <label for="obs" class="required" [class.text-danger]="
                           !iptObs.valid && (iptObs.dirty || iptObs.touched || salvando)
                         ">OBS</label>
-                  <input type="text" name="obs" id="obs" class="form-control form-control-sm" [class.is-invalid]="
+                  <input type="text" name="obs" id="obs" class="form-control " [class.is-invalid]="
                           !iptObs.valid && (iptObs.dirty || iptObs.touched || salvando)
                         " [(ngModel)]="achadoperdido.obs" #iptObs="ngModel" required />
                 </div>

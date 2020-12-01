@@ -42,6 +42,12 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { ModalReservaComponent } from './reserva/modal-reserva/modal-reserva.component';
 
+import { AngularMyDatePickerModule } from "angular-mydatepicker";
+import { NgSelect2Module } from "ng-select2";
+
+import { Select2SalaoDirective } from './diretivas/select2-salao.directive';
+import { Select2UsuarioDirective } from './diretivas/select2-usuario.directive';
+
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
   timeGridPlugin,
@@ -73,7 +79,9 @@ const firebaseConfig = {
     AchadosperdidosCadastroComponent,
     ReservaComponent,
     UsuarioPendenteComponent,
-    ModalReservaComponent
+    ModalReservaComponent,
+    Select2SalaoDirective,
+    Select2UsuarioDirective,
   ],
   imports: [
     BrowserModule,
@@ -86,12 +94,14 @@ const firebaseConfig = {
     AngularFirestoreModule, // firestore
     AngularFireAuthModule, // auth
     AngularFireStorageModule,
+    AngularMyDatePickerModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: "toast-top-right",
       preventDuplicates: true,
       closeButton: true,
     }),
+    NgSelect2Module
   ],
   providers: [
     {

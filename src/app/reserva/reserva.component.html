@@ -6,19 +6,149 @@
           <h5>Reserva do Salão</h5>
         </div>
         <div class="card-body">
-          <div class='demo-app'>
-            <div class='demo-app-main'>
-              <full-calendar *ngIf='calendarVisible' [options]='calendarOptions'></full-calendar>
+          <form name="reservaForm" novalidate #form="ngForm">
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="titulo" class="required"
+                    [class.text-danger]="!iptTitulo.valid && (iptTitulo.dirty || iptTitulo.touched || salvando) && !resetar">Titulo</label>
+                  <input type="text" name="titulo" id="titulo" class="form-control "
+                    [class.is-invalid]="!iptTitulo.valid && (iptTitulo.dirty || iptTitulo.touched || salvando) && !resetar"
+                    [(ngModel)]="reserva.titulo" #iptTitulo="ngModel" required />
+                </div>
+              </div>
             </div>
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="form-group">
+                  <label for="dataInicio" class="required" [class.text-danger]="
+                    !dp1Model.valid && (dp1Model.dirty || dp1Model.touched || salvando) && !resetar
+                  ">Data Início</label>
+                  <div class="input-group">
+                    <input class="form-control  text-center" angular-mydatepicker name="dataInicio"
+                      [class.is-invalid]="
+                    !dp1Model.valid && (dp1Model.dirty || dp1Model.touched || salvando) && !resetar"
+                      [(ngModel)]=" reserva.dataInicio" #dp1="angular-mydatepicker" #dp1Model="ngModel"
+                      [locale]="utilService.LOCALE_COMPONENTE_DATA" required />
+                    <div class="input-group-append">
+                      <button class="btn btn-sm btn-secondary" type="button" (click)="dp1.toggleCalendar()">
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="form-group">
+                  <label for="dataFim" class="required" [class.text-danger]="
+                  !dp2Model.valid && (dp2Model.dirty || dp2Model.touched || salvando) && !resetar
+                ">Data Fim</label>
+                  <div class="input-group">
+                    <input class="form-control  text-center" angular-mydatepicker name="dataFim"
+                      [class.is-invalid]="
+                    !dp2Model.valid && (dp2Model.dirty || dp2Model.touched || salvando) && !resetar"
+                      [(ngModel)]=" reserva.dataFim" #dp2="angular-mydatepicker" #dp2Model="ngModel"
+                      [locale]="utilService.LOCALE_COMPONENTE_DATA" required />
+                    <div class="input-group-append">
+                      <button class="btn btn-sm btn-secondary" type="button" (click)="dp2.toggleCalendar()">
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="form-group">
+                  <label for="salao" class="required" [class.text-danger]="
+                      !iptSalao.valid &&
+                      (iptSalao.dirty || iptSalao.touched || salvando) && !resetar
+                    ">Salão de Festa</label>
+                  <select class="select2bs4" name="salao" id="salao" [(ngModel)]="reserva.salao" [class.is-invalid]="
+                      !iptSalao.valid &&
+                      (iptSalao.dirty || iptSalao.touched || salvando) && !resetar
+                    " #iptSalao="ngModel" appSelect2Salao required></select>
+                </div>
+              </div>
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="form-group">
+                  <label for="usuario" class="required" [class.text-danger]="
+                      !iptUsuario.valid &&
+                      (iptUsuario.dirty || iptUsuario.touched || salvando) && !resetar
+                    ">Usuário</label>
+                  <select class="select2bs4" name="usuario" id="usuario" [(ngModel)]="reserva.usuario" [class.is-invalid]="
+                      !iptUsuario.valid &&
+                      (iptUsuario.dirty || iptUsuario.touched || salvando) && !resetar
+                    " #iptUsuario="ngModel" appSelect2Usuario required [disabled]="!authService.ehUsuarioAdministrador()"></select>
+                </div>
+              </div>
+            </div>
+            <div class="row d-flex justify-content-end">
+              <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                <div class="form-group">
+                  <button type="button" class="btn btn-sm btn-block btn-success" (click)="reservar()">
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i> Reservar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="table-responsive" *ngIf="temReserva()">
+            <table class="table table-hover table-sm">
+              <thead class="thead-dark">
+                <tr>
+                  <th class="text-center">Opções</th>
+                  <th class="text-center">
+                    Titulo
+                  </th>
+                  <th class="text-center">
+                    Data Início
+                  </th>
+                  <th class="text-center">
+                    Data Fim
+                  </th>
+                  <th class="text-center">
+                    Status
+                  </th>
+                  <th class="text-center">
+                    Usuário
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let reserva of reservarMonstrarNaTabela()" class="cursor-pointer">
+                  <td class="text-center w-10">
+                    <button type="button" class="btn btn-link text-success p-0 mr-2" title="Confirmar"
+                      (click)="confirmar(reserva)" [disabled]="!authService.ehUsuarioAdministrador()">
+                      <i class="fa fa-check" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="btn btn-link text-danger p-0 mr-2" title="Cancelar"
+                      (click)="cancelar(reserva)">
+                      <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                  </td>
+                  <td class="text-center">
+                    {{reserva.titulo}}
+                  </td>
+                  <td class="text-center">
+                    {{reserva.dataInicio}}
+                  </td>
+                  <td class="text-center">
+                    {{reserva.dataFim}}
+                  </td>
+                  <td class="text-center">
+                    {{reserva.status}}
+                  </td>
+                  <td class="text-center">
+                    {{getNomeUsuario(reserva)}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <app-modal-reserva
-      *ngIf="!resetarComponenteModalConsulta"
-      (enviarEntidadeCargoEmitter)="recebeReserva($event)"
-    ></app-modal-reserva>
   </div>
 </div>

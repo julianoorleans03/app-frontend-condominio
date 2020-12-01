@@ -17,7 +17,7 @@ export class AchadosperdidosComponent implements OnInit {
     private router: Router,
     private achadoperdidoService: AchadoperdidoService,
     private utilService: UtilService,
-    private authService: AuthService) { }
+    public authService: AuthService) { }
 
     async ngOnInit(): Promise<void> {
       await this.buscar();

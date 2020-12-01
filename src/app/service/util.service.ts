@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Options } from "select2";
 import * as moment from "moment";
-import { Subject } from "rxjs";
 import { Router } from "@angular/router";
 import Swal, { SweetAlertResult } from "sweetalert2";
 import { environment } from "src/environments/environment";
@@ -126,10 +125,10 @@ export class UtilService {
     }));
   }
 
-  retornaDataFormatada(data: any): string {
+  retornaDataFormatada(data: any, mascara: string = "DD/MM/YYYY"): string {
     if (data && data.singleDate) {
       const dataLocal = `${data.singleDate.date.year}/${data.singleDate.date.month}/${data.singleDate.date.day}`;
-      return moment(dataLocal).utcOffset(0).format("DD/MM/YYYY");
+      return moment(dataLocal).utcOffset(0).format(mascara);
     }
   }
 
@@ -147,6 +146,20 @@ export class UtilService {
     return new Date(this.retornaDataPorRegex(data)).toISOString().split('T')[0];
   }
 
+  retornaDataFormatadaDataPicker(data: any): any {
+    if (data) {
+      return {
+        isRange: false,
+        singleDate: {
+          date: {
+            year: data.split("/")[2],
+            month: data.split("/")[1],
+            day: data.split("/")[0],
+          },
+        },
+      };
+    }
+  }
 
   retornaOpcoesSelect2(mutiplos: boolean): Options {
     return {

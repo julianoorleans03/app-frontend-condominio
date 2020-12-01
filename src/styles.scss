@@ -17,3 +17,11 @@ html {
 .cursor-pointer {
   cursor: pointer !important;
 }
+
+.select2 {
+  width: auto !important;
+}
+
+select:invalid {
+  background-position: center right calc(0.975em + 0.1875rem) !important;
+}

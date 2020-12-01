@@ -13,7 +13,7 @@
                   <label for="nome" class="required" [class.text-danger]="
                       !iptNome.valid && (iptNome.dirty || iptNome.touched || salvando)
                     ">Nome</label>
-                  <input type="text" name="nome" id="nome" class="form-control form-control-sm" [class.is-invalid]="
+                  <input type="text" name="nome" id="nome" class="form-control " [class.is-invalid]="
                       !iptNome.valid && (iptNome.dirty || iptNome.touched || salvando)
                     " [(ngModel)]="usuario.nome" #iptNome="ngModel" required />
                 </div>
@@ -44,7 +44,7 @@
               <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
                 <div class="form-group">
                   <label for="email">E-mail</label>
-                  <input type="text" name="email" id="email" class="form-control form-control-sm"
+                  <input type="text" name="email" id="email" class="form-control "
                     [(ngModel)]="usuario.email" disabled/>
                 </div>
               </div>
@@ -55,7 +55,7 @@
                       !iptSenha.valid &&
                       (iptSenha.dirty || iptSenha.touched || salvando)
                     ">Senha</label>
-                  <input type="password" name="senha" id="senha" class="form-control form-control-sm"
+                  <input type="password" name="senha" id="senha" class="form-control "
                     [class.is-invalid]="
                       !iptSenha.valid &&
                       (iptSenha.dirty || iptSenha.touched || salvando)
@@ -67,14 +67,14 @@
               <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                 <div class="form-group">
                   <label for="bloco">Bloco Apartamento</label>
-                  <input type="text" name="bloco" id="bloco" class="form-control form-control-sm"
+                  <input type="text" name="bloco" id="bloco" class="form-control "
                     [(ngModel)]="usuario.bloco"/>
                 </div>
               </div>
               <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                 <div class="form-group">
                   <label for="numeroApartamento">Número Apartamento</label>
-                  <input type="text" name="numeroApartamento" id="numeroApartamento" class="form-control form-control-sm"
+                  <input type="text" name="numeroApartamento" id="numeroApartamento" class="form-control "
                     [(ngModel)]="usuario.numeroApartamento"/>
                 </div>
               </div>

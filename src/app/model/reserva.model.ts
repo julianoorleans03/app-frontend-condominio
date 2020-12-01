@@ -1,10 +1,10 @@
 export class Reserva {
   _id: string;
-  salao: string;
-  usuario: string;
+  salao: any;
+  usuario: any;
   dataReserva: string;
-  dataInicio: string;
-  dataFim: string;
+  dataInicio: any;
+  dataFim: any;
   status: string;
   titulo: string;
 
