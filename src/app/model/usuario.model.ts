@@ -7,7 +7,8 @@ export class Usuario {
   senha: string;
   facebook: boolean;
   bloco: string;
-  numeroApartamento;
+  numeroApartamento: string;
+  emailNotificacao: string;
   
   constructor() {
     this.facebook = false;
