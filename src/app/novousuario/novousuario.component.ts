@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { Usuario } from '../model/usuario.model';
 import { AuthService } from '../service/auth.service';
 import { UsuarioService } from '../service/usuario.service';
@@ -7,11 +8,11 @@ import { UtilService } from '../service/util.service';
 declare const jQuery: any;
 
 @Component({
-  selector: 'app-usuario',
-  templateUrl: './usuario.component.html',
-  styleUrls: ['./usuario.component.scss']
+  selector: 'app-novousuario',
+  templateUrl: './novousuario.component.html',
+  styleUrls: ['./novousuario.component.scss']
 })
-export class UsuarioComponent implements OnInit {
+export class NovousuarioComponent implements OnInit {
   title: string;
 
   usuario: Usuario;
@@ -21,22 +22,12 @@ export class UsuarioComponent implements OnInit {
   @ViewChild("form") form;
   constructor(private usuarioService: UsuarioService,
     private utilService: UtilService,
-    public authService: AuthService) { }
+    public authService: AuthService,
+    private router: Router) { }
 
   async ngOnInit() {
-
-    const idUsuario = this.authService.retornaIdUsuarioLogin();
     this.usuario = new Usuario();
-
-    await this.usuarioService.buscarPorId(idUsuario).then(response => {
-      if (response) {
-        this.usuario = response;
-      } else {
-        this.usuario = new Usuario();
-      }
-    });
-
-    this.title = "Cadastro de Usuario";
+    this.title = "Novo Usuario";
   }
 
   salvar(): void {
@@ -62,8 +53,12 @@ export class UsuarioComponent implements OnInit {
       }
     }
 
-    this.usuarioService.salvar(this.usuario).subscribe(response => {
-      this.utilService.mostrarMensagemSucesso("Usuário salvo com sucesso!");
-    });
+    this.usuario.tipo = "user";
+    this.usuario.ativo = false;
+    this.authService.criarConta(this.usuario);
+  }
+
+  voltar(): void {
+    this.router.navigate(["/"])
   }
 }

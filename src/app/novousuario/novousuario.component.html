@@ -1,0 +1,98 @@
+<div class="container pt-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="card card-height card-outline card-danger card-tabs shadow">
+        <div class="card-header">
+          <h5>Usuário</h5>
+        </div>
+        <div class="card-body">
+          <form name="usuarioForm" novalidate #form="ngForm">
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="form-group">
+                  <label for="nome" class="required" [class.text-danger]="
+                        !iptNome.valid && (iptNome.dirty || iptNome.touched || salvando)
+                      ">Nome</label>
+                  <input type="text" name="nome" id="nome" class="form-control " [class.is-invalid]="
+                        !iptNome.valid && (iptNome.dirty || iptNome.touched || salvando)
+                      " [(ngModel)]="usuario.nome" #iptNome="ngModel" required />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+                <div class="form-group">
+                  <label for="email" class="required" [class.text-danger]="
+                  !iptEmail.valid && (iptEmail.dirty || iptEmail.touched || salvando)
+                ">E-mail</label>
+                  <input type="text" name="email" id="email" class="form-control " [(ngModel)]="usuario.email"
+                    [class.is-invalid]="
+                  !iptEmail.valid && (iptEmail.dirty || iptEmail.touched || salvando)" #iptEmail="ngModel" required />
+                </div>
+              </div>
+
+              <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                <div class="form-group">
+                  <label for="senha" class="required" [class.text-danger]="
+                        !iptSenha.valid &&
+                        (iptSenha.dirty || iptSenha.touched || salvando)
+                      ">Senha</label>
+                  <input type="password" name="senha" id="senha" class="form-control " [class.is-invalid]="
+                        !iptSenha.valid &&
+                        (iptSenha.dirty || iptSenha.touched || salvando)
+                      " [(ngModel)]="usuario.senha" #iptSenha="ngModel" required />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="form-group">
+                  <label for="bloco">Bloco Apartamento</label>
+                  <input type="text" name="bloco" id="bloco" class="form-control " [(ngModel)]="usuario.bloco" />
+                </div>
+              </div>
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="form-group">
+                  <label for="numeroApartamento">Número Apartamento</label>
+                  <input type="text" name="numeroApartamento" id="numeroApartamento" class="form-control "
+                    [(ngModel)]="usuario.numeroApartamento" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="emailNotificacao" class="required" [class.text-danger]="
+                  !iptEmailNotificacao.valid && (iptEmailNotificacao.dirty || iptEmailNotificacao.touched || salvando)
+                ">E-mail</label>
+                  <input type="text" name="emailNotificacao" id="emailNotificacao" class="form-control "
+                    [(ngModel)]="usuario.emailNotificacao" [class.is-invalid]="
+                  !iptEmailNotificacao.valid && (iptEmailNotificacao.dirty || iptEmailNotificacao.touched || salvando)"
+                    #iptEmailNotificacao="ngModel" required />
+                </div>
+              </div>
+
+            </div>
+            <div class="row d-flex justify-content-end">
+              <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                <div class="form-group">
+                  <button type="button" class="btn btn-sm btn-block btn-success" (click)="salvar()">
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar
+                  </button>
+                </div>
+              </div>
+              <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                <div class="form-group">
+                  <button type="button" class="btn btn-sm btn-block btn-secondary" (click)="voltar()">
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i> Voltar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

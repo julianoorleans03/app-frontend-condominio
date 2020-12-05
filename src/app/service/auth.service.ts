@@ -57,6 +57,7 @@ export class AuthService {
       this.http.post<any>(`${environment.api}/usuario`, usuario).subscribe(
         (response) => {
           this.utilService.mostrarMensagemSucesso("Usuário criado com sucesso. Aguarde a liberação do ADM!");
+          this.router.navigate(["/"])
         },
         (error) => {
           if (error && error.status == 401) {

@@ -47,6 +47,7 @@ import { NgSelect2Module } from "ng-select2";
 
 import { Select2SalaoDirective } from './diretivas/select2-salao.directive';
 import { Select2UsuarioDirective } from './diretivas/select2-usuario.directive';
+import { NovousuarioComponent } from './novousuario/novousuario.component';
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
@@ -82,6 +83,7 @@ const firebaseConfig = {
     ModalReservaComponent,
     Select2SalaoDirective,
     Select2UsuarioDirective,
+    NovousuarioComponent,
   ],
   imports: [
     BrowserModule,

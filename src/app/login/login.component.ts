@@ -26,6 +26,10 @@ export class LoginComponent {
     this.authService.criarConta(usuario);
   }
 
+  novoUsuario() {
+    this.router.navigate(["/criar-conta"]);
+  }
+  
   entrarComFacebook() {
     this.authService.doFacebookLogin();
   }
