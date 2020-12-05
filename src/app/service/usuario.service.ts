@@ -37,7 +37,21 @@ export class UsuarioService {
   ativar(item: any): Observable<any> {
     return this.http.put<any>(
       `${environment.api}/usuario/ativar/${item._id}`,
-      {ativo: true}
+      { ativo: true }
+    );
+  }
+
+  enviarNotificacao(data: any): Observable<any> {
+    return this.http.post<any>(
+      `${environment.api}/usuario/enviar-notificacao/`,
+      data
     );
   }
 }
+
+
+
+
+
+
+

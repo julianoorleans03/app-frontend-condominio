@@ -23,13 +23,13 @@
                 <div class="form-group">
                   <label for="ativo">Ativo</label>
                   <div class="btn-group w-100" role="group" aria-label="">
-                    <button type="button" class="btn btn-sm text-truncate" title="Sim"
+                    <button type="button" class="btn  text-truncate" title="Sim"
                       [class.btn-success]="usuario.ativo" [class.btn-dark]="!usuario.ativo" type="button"
                       (click)="usuario.ativo = !usuario.ativo" [disabled]="!authService.ehUsuarioAdministrador()">
                       <i class="fa" [class.fa-check]="usuario.ativo"></i>
                       Sim
                     </button>
-                    <button type="button" class="btn btn-sm text-truncate" title="Não"
+                    <button type="button" class="btn  text-truncate" title="Não"
                       [class.btn-success]="!usuario.ativo" [class.btn-dark]="usuario.ativo" type="button"
                       (click)="usuario.ativo = !usuario.ativo" [disabled]="!authService.ehUsuarioAdministrador()">
                       <i class="fa" [class.fa-check]="!usuario.ativo"></i>
@@ -91,7 +91,7 @@
             <div class="row d-flex justify-content-end">
               <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
                 <div class="form-group">
-                  <button type="button" class="btn btn-sm btn-block btn-success" (click)="salvar()">
+                  <button type="button" class="btn  btn-block btn-success" (click)="salvar()">
                     <i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar
                   </button>
                 </div>

@@ -22,7 +22,7 @@ export class Select2UsuarioDirective {
   constructor(
     private el: ElementRef,
     private authService: AuthService
-  ) {}
+  ) { }
 
   ngOnInit() {
     jQuery(this.el.nativeElement)
@@ -46,6 +46,8 @@ export class Select2UsuarioDirective {
               resultado.push({
                 id: dados._id,
                 text: dados.nome,
+                emailNotificacao: dados.emailNotificacao,
+                _id: dados._id
               });
             });
 
@@ -60,6 +62,8 @@ export class Select2UsuarioDirective {
         const novo = {
           id: e.params.data.id,
           nome: e.params.data.text,
+          emailNotificacao: e.params.data.emailNotificacao ? e.params.data.emailNotificacao : e.params.data.email,
+          _id: e.params.data.id
         };
 
         this.ngModel = novo;

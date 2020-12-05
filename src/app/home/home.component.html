@@ -1,3 +1,122 @@
-<div class="container pt-5">
+<div class="container pt-5" *ngIf="authService.ehUsuarioAdministrador()">
+  <div class="row">
+    <div class="col-12">
+      <div class="card card-height card-outline card-danger card-tabs shadow">
+        <div class="card-header">
+          <h5>Enviar Notificação</h5>
+        </div>
+        <div class="card-body">
+          <form name="notificacaoForm" novalidate #form="ngForm">
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="nome" class="required" [class.text-danger]="
+                          !iptNome.valid && (iptNome.dirty || iptNome.touched || salvando)
+                        ">Assunto</label>
+                  <input type="text" name="nome" id="nome" class="form-control " [class.is-invalid]="
+                          !iptNome.valid && (iptNome.dirty || iptNome.touched || salvando)
+                        " [(ngModel)]="assunto" #iptNome="ngModel" required />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="notificacao" class="required" [class.text-danger]="
+                      !iptNotificacao.valid &&
+                      (iptNotificacao.dirty ||
+                      iptNotificacao.touched ||
+                        salvando)
+                    ">Notificação</label>
+                  <textarea class="form-control form-control-sm" name="notificacao" id="obsDetalhamentoCompromisso"
+                    rows="10" [(ngModel)]="notificacao" [class.is-invalid]="
+                      !iptNotificacao.valid &&
+                      (iptNotificacao.dirty ||
+                      iptNotificacao.touched ||
+                        salvando)
+                    " #iptNotificacao="ngModel" placeholder="Digite aqui..." required></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+                <div class="form-group">
+                  <label for="usuario">Usuário</label>
+                  <select class="select2bs4" name="usuario" id="usuario" [(ngModel)]="usuario"
+                    appSelect2Usuario></select>
+                </div>
+              </div>
+              <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2">
+                <label>&nbsp;</label>
+                <div class="form-group">
+                  <button type="button" class="btn btn-block btn-primary" (click)="adicionarUsuario()">
+                    <i class="fa fa-plus" aria-hidden="true"></i> Adicionar
+                  </button>
+                </div>
+              </div>
+            </div>
 
+            <div class="row d-flex justify-content-center">
+              <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                <div class="form-group">
+                  <button type="button" class="btn  btn-block btn-success" (click)="enviar()">
+                    <i class="fa fa-send" aria-hidden="true"></i> Enviar
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-hover table-sm">
+                <thead>
+                  <tr>
+                    <th class="text-center">Remover</th>
+                    <th class="text-center">
+                      Nome
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let usuario of usuarios let i = index" class="cursor-pointer">
+                    <td class="text-center">
+                      <button type="button" class="btn btn-link p-0 mr-2 text-danger" title="Remover"
+                        (click)="remover(i)">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                      </button>
+                    </td>
+                    <td class="text-center">
+                      {{usuario.nome}}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container pt-5" *ngIf="!authService.ehUsuarioAdministrador()">
+  <div class="row">
+    <div class="col-12">
+      <div class="card card-height card-outline card-danger card-tabs shadow">
+        <div class="card-header">
+          <h5>Bem Vindo</h5>
+        </div>
+        <div class="card-body">
+          <div class="alert alert-dark" role="alert">
+            <h4 class="alert-heading">Regras do Condomínio</h4>
+            <p>Aqui consta algumas regras que o condomínio impõe sobre os moradores:</p>
+            <hr>
+            <p class="mb-0">*Não lavar o carro no pátio.</p>
+            <p class="mb-0">*Manter a preservação do ambiente.</p>
+            <p class="mb-0">*Respeita os demais moradores.</p>
+            <p class="mb-0">*Respeita a sonoridade permitida pelo condomínio.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

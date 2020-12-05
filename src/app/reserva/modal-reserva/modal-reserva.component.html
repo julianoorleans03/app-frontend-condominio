@@ -31,21 +31,21 @@
         <div class="row d-flex justify-content-end">
           <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
             <div class="form-group">
-              <button type="button" class="btn btn-sm btn-block btn-danger" (click)="cancelar()" *ngIf="reservaPendente()">
+              <button type="button" class="btn  btn-block btn-danger" (click)="cancelar()" *ngIf="reservaPendente()">
                 <i class="fa fa-trash" aria-hidden="true"></i> Cancelar
               </button>
             </div>
           </div>
           <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
             <div class="form-group">
-              <button type="button" class="btn btn-sm btn-block btn-success" (click)="salvar()" [disabled]="!authService.ehUsuarioAdministrador()">
+              <button type="button" class="btn  btn-block btn-success" (click)="salvar()" [disabled]="!authService.ehUsuarioAdministrador()">
                 <i class="fa fa-check" aria-hidden="true"></i> Confirmar
               </button>
             </div>
           </div>
           <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
             <div class="form-group">
-              <button type="button" class="btn btn-sm btn-block btn-primary" (click)="salvar()">
+              <button type="button" class="btn  btn-block btn-primary" (click)="salvar()">
                 <i class="fa fa-floppy-o" aria-hidden="true"></i> Salvar
               </button>
             </div>
